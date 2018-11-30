@@ -6,6 +6,16 @@
         <%= f.label :name %>
         <%= f.text_field :name, size: 40, autofocus: true %>
       </li>
+      <li>
+        <%= f.label :genre %>
+        <%= f.select :genre,
+                      User::USER_GENRES,
+                      prompt: "Pick one" %>
+      </li>
+      <li>
+        <%= f.label :age %>
+        <%= f.number_field :age, size: 3 %>
+      </li>
       <li class="required">
         <%= f.label :email %>
         <%= f.email_field :email, size: 40 %>

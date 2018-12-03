@@ -7,9 +7,9 @@
         <%= f.text_field :name, size: 40, autofocus: true %>
       </li>
       <li>
-        <%= f.label :genre %>
-        <%= f.select :genre,
-                      User::USER_GENRES,
+        <%= f.label :gender %>
+        <%= f.select :gender,
+                      User.genders.keys.map { |gender| [gender.titleize, gender] },
                       prompt: "Pick one" %>
       </li>
       <li>

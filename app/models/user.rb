@@ -1,16 +1,13 @@
 class User < ApplicationRecord
   has_secure_password
 
-  USER_GENRES = [
-    'Male',
-    'Female'
-  ]
+  enum gender: [ :male, :female ]
 
   validates :name, presence: true
   validates :email, presence: true,
                     format: /\A\S+@\S+\z/,
                     uniqueness: { case_sensitive: false }
-  validates :genre, inclusion: { in: USER_GENRES }
+  validates :gender, inclusion: { in: genders }
   validates :age,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 

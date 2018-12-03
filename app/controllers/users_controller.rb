@@ -12,10 +12,11 @@ class UsersController < ApplicationController
   end
 
   def create
+    puts user_params
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to @user, notice: 'Thanks for signing up!'
+      redirect_to @user, notice: "Thanks for signing up!"
     else
       render :new
     end
@@ -45,6 +46,6 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user)
-          .permit(:name, :genre, :age, :email, :password, :password_confirmation)
+          .permit(:name, :gender, :age, :email, :password, :password_confirmation)
   end
 end

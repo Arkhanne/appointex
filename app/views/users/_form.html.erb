@@ -3,7 +3,7 @@
   <fieldset>
     <ol>
       <li class="required">
-        <%= f.label :name %>
+        <%= f.label :name, "Full Name" %>
         <%= f.text_field :name, size: 40, autofocus: true %>
       </li>
       <li>
@@ -30,7 +30,11 @@
       </li>
     </ol>
     <p>
-      <%= f.submit %>
+      <% if @user.new_record? %>
+        <%= f.submit "Create Account" %>
+      <% else %>
+        <%= f.submit "Update Account" %>
+      <% end %>
     </p>
   </fieldset>
 <% end %>

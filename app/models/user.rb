@@ -13,4 +13,9 @@ class User < ApplicationRecord
   validates :genre, inclusion: { in: USER_GENRES }
   validates :age,
             numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  def self.authenticate(email, password)
+    user = User.find_by(email: email)
+    user && user.authenticate(password)
+  end
 end

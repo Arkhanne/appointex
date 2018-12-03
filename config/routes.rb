@@ -4,4 +4,5 @@ Rails.application.routes.draw do
 
   get 'root' => 'users#index'
   get 'signup' => 'users#new'
+  get 'signin' => 'sessions#new'
 end

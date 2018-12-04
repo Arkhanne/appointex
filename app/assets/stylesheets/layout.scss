@@ -1,0 +1,57 @@
+@import "colors";
+
+header#page-header {
+  color: $secondary-color;
+  background: $primary-color;
+  padding: 5px;
+  border-bottom: 3px solid darken($primary-color, 10%);
+
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  a:link {
+    color: $secondary-color;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: $secondary-color;
+    text-decoration: none;
+  }
+}
+
+footer#page-footer {
+  color: $primary-color;
+  background: $secondary-color;
+  text-align: center;
+  padding: 5px;
+  border-top: 3px solid darken($secondary-color, 10%);
+
+  a:link {
+    color: $primary-color;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+aside#sidebar {
+  float: right;
+  background: $secondary-color;
+  width: 200px;
+
+  a:link {
+    color: $primary-color;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: $primary-color;
+    text-decoration: none;
+  }
+}

@@ -2,35 +2,35 @@
   <%= render "shared/errors", object: @user %>
   <fieldset>
     <ol>
-      <li class="required">
+      <li>
         <%= f.label :name, "Full Name" %>
         <%= f.text_field :name, size: 40, autofocus: true %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :gender %>
         <%= f.select :gender,
                       User.genders.keys.map { |gender| [gender.titleize, gender] },
                       prompt: "Pick one" %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :age %>
         <%= f.number_field :age, size: 3 %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :email %>
         <%= f.email_field :email, size: 40 %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :user_type %>
         <%= f.select :user_type,
                       User.user_types.keys.map { |user_type| [user_type.titleize, user_type] },
                       prompt: "Pick one" %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :password %>
         <%= f.password_field :password, size: 40 %>
       </li>
-      <li class="required">
+      <li>
         <%= f.label :password_confirmation, "Confirm Password" %>
         <%= f.password_field :password_confirmation, size: 40 %>
       </li>

@@ -1,0 +1,6 @@
+<%= form_with model: schedule do |f| %>
+  <%= f.hidden_field :owner_id %>
+  <%= f.hidden_field :week_day %>
+  <%= f.hidden_field :hour %>
+  <%= f.submit '' %>
+<% end %>

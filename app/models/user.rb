@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :schedules, foreign_key: :owner_id
+
   has_secure_password
 
   enum gender: [ :male, :female ]
@@ -17,4 +19,13 @@ class User < ApplicationRecord
     user = User.find_by(email: email)
     user && user.authenticate(password)
   end
+
+  def works_for?(week_day:, hour:)
+    schedules.exists?(week_day: week_day, hour: hour)
+  end
+
+  def schedule_for(week_day:, hour:)
+    works_for?(week_day: week_day, hour: hour) ? schedules.find_by(week_day: week_day, hour: hour) : Schedule.new(owner: self, week_day: week_day, hour: hour)
+  end
+
 end

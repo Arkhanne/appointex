@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_03_143233) do
+ActiveRecord::Schema.define(version: 2018_12_05_111807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer "week_day"
+    t.integer "hour"
+    t.bigint "owner_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_schedules_on_owner_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -26,4 +35,5 @@ ActiveRecord::Schema.define(version: 2018_12_03_143233) do
     t.integer "user_type", default: 0
   end
 
+  add_foreign_key "schedules", "users", column: "owner_id"
 end

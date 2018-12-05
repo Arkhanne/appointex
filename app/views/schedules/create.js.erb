@@ -1,0 +1,3 @@
+var td = document.getElementById('schedule_<%= @schedule.week_day %>_<%= @schedule.hour %>');
+td.classList.add('active');
+td.innerHTML = "<%= j(render partial: 'schedules/form', locals: { schedule: @schedule }) %>";

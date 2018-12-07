@@ -1,7 +1,7 @@
 class SchedulesController < ApplicationController
+  before_action :require_professional
 
-  def index
-  end
+  def index; end
 
   def create
     @schedule = Schedule.create(schedule_params)

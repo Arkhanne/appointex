@@ -2,12 +2,14 @@
     <nav>
       <% if current_user %>
         <ul>
-          <li>
-            <%= link_to 'My Schedule' %>
-          </li>
-          <li>
-            <%= link_to 'Configuration', schedules_path %>
-          </li>
+          <% if current_user_professional? %>
+            <li>
+              <%= link_to 'My Schedule' %>
+            </li>
+            <li>
+              <%= link_to 'Configuration', schedules_path %>
+            </li>
+          <% end %>
           <li>
             <%= link_to 'My Appointments' %>
           </li>

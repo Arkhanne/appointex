@@ -1,16 +1,19 @@
-td {
-  background-color: white;
-  text-align: center;
-}
-  
-[id^="schedule"] {
-  width: 100px;
-}
+.schedule {
 
-.active{
-  background-color: green;
-}
-input {
-  background-color: Transparent;
-  width: 100%;
-}
+  td {
+    background-color: white;
+    text-align: center;
+  }
+  
+  [id^="schedule"] {
+    width: 100px;
+  }
+  
+  .active{
+    background-color: green;
+  }
+  input {
+    background-color: Transparent;
+    width: 100%;
+  }
+} 

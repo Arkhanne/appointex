@@ -1,0 +1,21 @@
+Appointment for
+<%= select_tag :owner, # name of selectbox
+      options_from_collection_for_select(User.professional, "id", "name"), # your options for this select box
+      :'data-remote' => 'true', # important for UJS
+      :'data-url' => url_for(:controller => 'appointments', :action => 'get_data'), # we get the data from here!
+      :'data-type' => 'json' # tell jQuery to parse the response as JSON!
+%>
+
+<%= @owner_appointments %>
+
+<% if @owner_appointments %>
+holaholaholahola
+<table>
+  <% @owner_appointments.each do |appointment| %>
+    <tr>
+      <td><%= appointment.id %></td>
+    </tr>
+  <% end %>
+</table>
+
+<% end %>

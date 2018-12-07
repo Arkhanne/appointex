@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  has_many :schedules, foreign_key: :owner_id
+  has_many :schedules, foreign_key: :owner_id, dependent: :destroy
+  has_many :appointments, foreign_key: :owner_id, dependent: :destroy
+  has_many :appointments, foreign_key: :caller_id, dependent: :destroy
 
   has_secure_password
 

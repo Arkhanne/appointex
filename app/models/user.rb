@@ -30,4 +30,11 @@ class User < ApplicationRecord
     works_for?(week_day: week_day, hour: hour) ? schedules.find_by(week_day: week_day, hour: hour) : Schedule.new(owner: self, week_day: week_day, hour: hour)
   end
 
+  def has_an_appointment?(owner:, date:)
+    appointments.exists?(owner: owner, caller: self, date: date)
+  end
+
+  def appointment_for(owner:, date:)
+    has_an_appointment?(owner: owner, date: date) ? appointments.find_by(owner: owner, date: date) : Appointment.new(owner: owner, caller: self, owner: owner, date: date)
+  end
 end

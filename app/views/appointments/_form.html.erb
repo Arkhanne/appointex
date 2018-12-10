@@ -1,0 +1,6 @@
+<%= form_with model: appointment do |f| %>
+  <%= f.hidden_field :owner_id %>
+  <%= f.hidden_field :caller_id %>
+  <%= f.hidden_field :date %>
+  <%= f.submit '' %>
+<% end %>

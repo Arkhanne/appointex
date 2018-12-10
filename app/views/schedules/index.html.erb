@@ -13,7 +13,7 @@
     <% 0.upto(23).each do |hour| %>
       <tr>
         <td><%= format("%02d:00", hour) %></td>
-        <% 1.upto(7).each do |day| %>
+        <% 0.upto(6).each do |day| %>
           <td id='schedule_<%= day %>_<%= hour %>' class="<%= 'active' if current_user.works_for?(week_day: day, hour: hour) %>">
             <%= render partial: 'schedules/form', locals: { schedule: current_user.schedule_for(week_day: day, hour: hour) } %>
           </td>

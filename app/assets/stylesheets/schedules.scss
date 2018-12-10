@@ -7,11 +7,25 @@
   
   [id^="schedule"] {
     width: 100px;
+    border: solid 1px;
   }
   
   .active{
     background-color: green;
   }
+  
+  .not-active{
+    background-color: lightgray;
+  }
+
+  .appointment{
+    background-color: red;
+  }
+
+  .self-appointment{
+    background-color: yellow;
+  }
+
   input {
     background-color: Transparent;
     width: 100%;

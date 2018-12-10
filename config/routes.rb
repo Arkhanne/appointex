@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   root to: redirect('signin')
   get 'signup' => 'users#new'
   get 'signin' => 'sessions#new'
-  get 'getdata' => 'appointments#get_data'
+  get 'getdata' => 'appointments#owner_appointments', as: 'owner_appointments'
 
   resources :users do
     resources :schedules

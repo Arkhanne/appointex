@@ -1,5 +1,4 @@
 module AppointmentsHelper
-
   def week_days(page)
     days = []
 

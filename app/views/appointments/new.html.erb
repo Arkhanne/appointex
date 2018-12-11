@@ -1,6 +1,6 @@
 <span>Appointment for</span>
 <%= select_tag :owner,
-      options_from_collection_for_select(User.professional, "id", "name"), data: { remote: true, url: url_for(controller: 'appointments', action: 'owner_appointments') }, prompt: 'Select one'
+      options_from_collection_for_select(User.professional.where.not(id: current_user.id), "id", "name"), data: { remote: true, url: url_for(controller: 'appointments', action: 'owner_appointments') }, prompt: 'Select one'
 %>
 <div id="owner_appointments">
   <%= render partial: 'appointments/owner_appointments' %>

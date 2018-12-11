@@ -1,0 +1,4 @@
+var td = document.getElementById('schedule_<%= @appointment.date.wday - 1 %>_<%= @appointment.date.hour %>');
+td.classList.remove('self-appointment');
+td.classList.add('active');
+td.innerHTML = "<%= j(render partial: 'appointments/form', locals: { appointment: @appointment }) %>";

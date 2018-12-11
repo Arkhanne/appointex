@@ -1,0 +1,21 @@
+<% days = schedules_week_days(@page) %>
+<table id="table" class="schedule">
+  <tr>
+    <td></td>
+    <% days.each do |day| %>
+      <td>
+        <%= l(day, format: "%^a %e %b") %>
+      </td>
+    <% end %>
+  </tr>
+  <% 0.upto(23).each do |hour| %>
+    <tr>
+      <td><%= format("%02d:00", hour) %></td>
+      <%= render partial: 'schedules/day', collection: days, locals: { owner: @owner, caller: current_user, hour: hour } %>
+    </tr>
+  <% end %>
+</table>
+
+<% 1.upto(4).each do |page| %>
+  <%= link_to page, schedule_path(id: current_user.id, page: page), remote: true, class: "#{'active' if page == @page}" %>
+<% end %>

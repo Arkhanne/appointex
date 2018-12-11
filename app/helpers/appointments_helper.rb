@@ -1,5 +1,5 @@
 module AppointmentsHelper
-  def week_days(page)
+  def appointments_week_days(page)
     days = []
 
     0.upto(6).each do |week_day|
@@ -9,7 +9,7 @@ module AppointmentsHelper
     days
   end
 
-  def schedule_class(owner:, caller:, date:)
+  def appointments_schedule_class(owner:, caller:, date:)
     if caller.has_an_appointment?(owner: owner, date: date)
       'self-appointment'
     elsif Appointment.exists?(owner: owner, date: date)

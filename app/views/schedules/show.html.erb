@@ -1,0 +1,5 @@
+<% if current_user.id.to_i == params[:id].to_i %>
+  <div>
+    <%= render partial: 'schedules/schedule' %>
+</div>
+<% end %>

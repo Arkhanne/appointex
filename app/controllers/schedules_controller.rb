@@ -11,10 +11,6 @@ class SchedulesController < ApplicationController
     schedule_to_delete.destroy
   end
 
-  def show
-    @page = params[:page].blank? ? 1 : params[:page].to_i
-  end
-
   private
 
   def schedule_params

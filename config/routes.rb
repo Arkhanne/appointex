@@ -1,19 +1,11 @@
 Rails.application.routes.draw do
-  resources :appointments
-  resources :schedules
-  resources :users
-  resource :session
+  root to: redirect('session/signin')
 
-  root to: redirect('signin')
-  get 'signup' => 'users#new'
-  get 'signin' => 'sessions#new'
+  resource :session, path_names: { new: 'signin' }
+
   get 'getdata' => 'appointments#owner_appointments', as: 'owner_appointments'
-
   resources :users do
+    resources :appointments
     resources :schedules
   end
-
-  # resources :users do
-  #   resources :appointments
-  # end
 end

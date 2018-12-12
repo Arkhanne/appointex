@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts user_params
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
@@ -45,8 +44,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user)
-          .permit(:name, :gender, :age, :email, :password, :password_confirmation, :user_type)
+    params.require(:user).permit(:name, :gender, :age, :email, :password, :password_confirmation, :user_type)
   end
 
   def require_correct_user

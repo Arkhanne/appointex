@@ -1,3 +1,0 @@
-<td id='schedule_<%= day.wday - 1 %>_<%= hour %>' class="<%= schedules_schedule_class(owner: current_user, date: DateTime.new(day.year, day.month, day.day, hour)) %>">
-  <%= render partial: 'schedules/appointment_form', locals: { appointment: current_user.appointment_for(owner: current_user, date: DateTime.new(day.year, day.month, day.day, hour)) } %>
-</td>

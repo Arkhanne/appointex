@@ -4,7 +4,7 @@
         <ul>
           <% if current_user_professional? %>
             <li>
-              <%= link_to 'My Schedule', schedule_path(current_user) %>
+              <%= link_to 'My Schedule', user_appointments_path(current_user) %>
             </li>
             <li>
               <%= link_to 'Configuration', user_schedules_path(current_user) %>
@@ -14,7 +14,7 @@
             <%= link_to 'My Appointments' %>
           </li>
           <li>
-            <%= link_to 'New Appointment', new_appointment_path %>
+            <%= link_to 'New Appointment', new_user_appointment_path(user_id: current_user.id) %>
           </li>
         </ul>
       <% end %>

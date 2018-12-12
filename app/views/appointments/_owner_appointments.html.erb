@@ -16,8 +16,7 @@
       </tr>
     <% end %>
   </table>
-
   <% 1.upto(4).each do |page| %>
-    <%= link_to page, owner_appointments_path(owner: @owner.id, page: page), remote: true, class: "#{'active' if page == @page}" %>
+    <%= link_to page, url_for(params.permit!.merge(page: page)), remote: params[:action] != 'index', class: "#{'active' if page == @page}" %>
   <% end %>
 <% end %>

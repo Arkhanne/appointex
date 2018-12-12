@@ -31,11 +31,7 @@ class User < ApplicationRecord
   end
 
   def has_an_appointment?(owner:, date:)
-    if owner == self
-      appointments.exists?(owner: owner, date: date)
-    else
-      appointments.exists?(owner: owner, caller: self, date: date)
-    end
+    appointments.exists?(owner: owner, caller: self, date: date)
   end
 
   def appointment_for(owner:, date:)

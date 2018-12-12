@@ -20,4 +20,8 @@ module AppointmentsHelper
       'not-active'
     end
   end
+
+  def appointment_name_to_show(appointment:)
+    appointment.caller.name if appointment.id? && appointment.owner.id == current_user.id
+  end
 end

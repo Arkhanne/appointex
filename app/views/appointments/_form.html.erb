@@ -2,5 +2,5 @@
   <%= f.hidden_field :owner_id %>
   <%= f.hidden_field :caller_id %>
   <%= f.hidden_field :date %>
-  <%= f.submit '' %>
+  <%= f.submit "#{appointment_name_to_show(appointment: appointment)}" %>
 <% end %>

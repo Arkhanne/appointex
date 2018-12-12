@@ -1,3 +1,9 @@
-var td = document.getElementById('schedule_<%= @schedule.week_day %>_<%= @schedule.hour %>');
-td.classList.add('active');
-td.innerHTML = "<%= j(render partial: 'schedules/form', locals: { schedule: @schedule }) %>";
+<% if @appointment.new_record? %>
+  <% @appointment.errors.full_messages.each do |message| %>
+    alert("<%= message %>");
+  <% end %>
+<% else %>
+  var td = document.getElementById('schedule_<%= @schedule.week_day %>_<%= @schedule.hour %>');
+  td.classList.add('active');
+  td.innerHTML = "<%= j(render partial: 'schedules/form', locals: { schedule: @schedule }) %>";
+<% end %>

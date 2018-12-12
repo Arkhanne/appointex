@@ -37,7 +37,10 @@ class AppointmentsController < ApplicationController
   # end
 
   def create
-    @appointment = Appointment.create(appointment_params)
+    @appointment = Appointment.new(appointment_params)
+    if @appointment.valid_appointment_for?(current_user)
+      @appointment = Appointment.create(appointment_params)
+    end
   end
 
   def update

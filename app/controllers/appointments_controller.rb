@@ -37,10 +37,7 @@ class AppointmentsController < ApplicationController
   # end
 
   def create
-    @appointment = Appointment.new(appointment_params)
-    if @appointment.valid_appointment_for?(current_user)
-      @appointment = Appointment.create(appointment_params)
-    end
+    @appointment = Appointment.create(appointment_params)
   end
 
   def update
@@ -54,7 +51,11 @@ class AppointmentsController < ApplicationController
     @owner = current_user
     @page = params[:page].blank? ? 1 : params[:page].to_i
   end
-  
+
+  def list
+    @appointments = current_user.caller_appointments
+  end
+
   private
 
   def appointment_params

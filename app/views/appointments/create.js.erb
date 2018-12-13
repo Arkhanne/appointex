@@ -1,4 +1,4 @@
-<% if @appointment.valid? %>
+<% if @appointment.id? %>
   var td = document.getElementById('schedule_<%= @appointment.date.wday - 1 %>_<%= @appointment.date.hour %>');
   td.classList.remove('active');
   td.classList.add('self-appointment');

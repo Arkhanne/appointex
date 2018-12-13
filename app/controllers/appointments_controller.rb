@@ -53,7 +53,13 @@ class AppointmentsController < ApplicationController
   end
 
   def list
-    @appointments = current_user.caller_appointments
+    @appointments = current_user.caller_appointments.order('date')
+  end
+
+  def destroy
+    appointment = Appointment.find_by(id: params[:id])
+    appointment.destroy
+    redirect_to user_appointments_list_path(current_user), alert: "Appointment succssfuly removed!"
   end
 
   private

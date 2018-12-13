@@ -1,0 +1,11 @@
+<% @appointments.each do |appointment| %>
+  <div class="appointment_card">
+    <p>
+      <%= appointment.date.to_s(format = :long) %>
+    </p>
+    <p>
+      <%= appointment.owner.name %>
+      <%= button_to "Remove", user_appointment_path(current_user, appointment.id), method:"delete" %>
+    </p>
+  </div>
+<% end %>

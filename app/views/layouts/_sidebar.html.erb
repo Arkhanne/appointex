@@ -11,7 +11,7 @@
             </li>
           <% end %>
           <li>
-            <%= link_to 'My Appointments' %>
+            <%= link_to 'My Appointments', user_appointments_list_path(current_user) %>
           </li>
           <li>
             <%= link_to 'New Appointment', new_user_appointment_path(user_id: current_user.id) %>

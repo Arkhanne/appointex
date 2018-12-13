@@ -1,0 +1,8 @@
+<h1>You have a new appointment in <%= link_to 'Appointex', @url %>, <%= @appointment.owner.name %></h1>
+<p>
+  Date: <%= @appointment.date.to_s(format = :long) %><br>
+  Client: <%= @appointment.caller.name %><br>
+</p>
+<p>
+  To login to the site, just follow this link: <%= @url %>.
+</p>

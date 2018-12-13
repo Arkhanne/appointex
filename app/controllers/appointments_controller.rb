@@ -38,10 +38,14 @@ class AppointmentsController < ApplicationController
 
   def create
     @appointment = Appointment.create(appointment_params)
+    UserMailer.with(appointment: @appointment).new_appointment_owner_email.deliver_later
+    UserMailer.with(appointment: @appointment).new_appointment_caller_email.deliver_later
   end
 
   def update
     @appointment = Appointment.find_by(id: params[:id])
+    UserMailer.with(appointment: @appointment).remove_appointment_caller_email.deliver_later
+    UserMailer.with(appointment: @appointment).remove_appointment_owner_email.deliver_later
     if @appointment.destroy_for(current_user)
       @appointment = Appointment.new(owner: @appointment.owner, caller: @appointment.caller, date: @appointment.date)
     end
@@ -53,13 +57,15 @@ class AppointmentsController < ApplicationController
   end
 
   def list
-    @appointments = current_user.caller_appointments.order('date')
+    @appointments = current_user.caller_appointments.order(date: :asc)
   end
 
   def destroy
     appointment = Appointment.find_by(id: params[:id])
+    UserMailer.with(appointment: appointment).remove_appointment_caller_email.deliver_later
+    UserMailer.with(appointment: appointment).remove_appointment_owner_email.deliver_later
     appointment.destroy
-    redirect_to user_appointments_list_path(current_user), alert: "Appointment succssfuly removed!"
+    redirect_to user_appointments_list_path(current_user), alert: "Appointment successfuly removed!"
   end
 
   private

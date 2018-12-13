@@ -1,0 +1,8 @@
+<h1>One appointment has been removed, <%= @appointment.caller.name %></h1>
+<p>
+  Date: <%= @appointment.date.to_s(format = :long) %><br>
+  Professional: <%= @appointment.owner.name %><br>
+</p>
+<p>
+  To login to the site, just follow this link: <%= @url %>.
+</p>

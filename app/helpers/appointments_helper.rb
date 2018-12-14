@@ -14,7 +14,7 @@ module AppointmentsHelper
       'self-appointment'
     elsif Appointment.exists?(owner: owner, date: date)
       'appointment'
-    elsif owner.works_for?(week_day: date.wday - 1, hour: date.hour)
+    elsif owner.works_for?(week_day: date.wday, hour: date.hour)
       'active'
     else
       'not-active'

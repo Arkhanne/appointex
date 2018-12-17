@@ -33,10 +33,14 @@ class User < ApplicationRecord
   end
 
   def has_an_appointment?(owner:, date:)
-    if owner.id == self.id
-      Appointment.exists?(owner: owner, date: date)
-    else
-      Appointment.exists?(owner: owner, caller: self, date: date)
+    appointment_caller = Rails.cache.fetch(Appointment.cache_key(owner: owner, date: date))
+    
+    if appointment_caller && owner.id == self.id 
+      # User has an appopintment from other user
+      true
+    elsif appointment_caller == self.id 
+      # User has an appointment for the appointment owner 
+      true
     end
   end
 
@@ -51,5 +55,4 @@ class User < ApplicationRecord
       end
     end
   end
-
 end

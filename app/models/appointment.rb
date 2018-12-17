@@ -3,8 +3,8 @@ class Appointment < ApplicationRecord
   belongs_to :caller, class_name: 'User', foreign_key: :caller_id
 
   before_validation :valid_appointment?
-  after_create :send_create_emails
-  after_destroy :send_destroy_emails
+  after_create :send_create_emails, :write_cache
+  after_destroy :send_destroy_emails, :purge_cache
 
   def destroy_for(current_user)
     if caller == current_user
@@ -26,11 +26,15 @@ class Appointment < ApplicationRecord
     end
   end
 
+  def self.cache_key(owner:, date:)
+    owner.id.to_s + '_' + date.year.to_s + date.month.to_s + date.day.to_s + date.hour.to_s
+  end
+
   private
 
   def valid_appointment?
     return if caller.has_an_appointment?(owner: owner, date: date) && id.present?
-    if Appointment.exists?(owner: owner, date: date)
+    if Rails.cache.exist?(Appointment.cache_key(owner: owner, date: date))
       errors.add(:base, :alert, message: 'You only can take an empty appointment')
     elsif owner.works_for?(week_day: date.wday, hour: date.hour)
       # res
@@ -48,4 +52,13 @@ class Appointment < ApplicationRecord
     UserMailer.with(appointment: self).remove_appointment_caller_email.deliver_later
     UserMailer.with(appointment: self).remove_appointment_owner_email.deliver_later
   end
+
+  def write_cache
+    Rails.cache.write(Appointment.cache_key(owner: owner, date: date), caller_id)
+  end
+
+  def purge_cache
+    Rails.cache.delete(Appointment.cache_key(owner: owner, date: date))
+  end
+
 end

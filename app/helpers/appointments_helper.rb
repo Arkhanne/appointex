@@ -12,13 +12,23 @@ module AppointmentsHelper
   def appointments_schedule_class(owner:, caller:, date:)
     if caller.has_an_appointment?(owner: owner, date: date)
       'self-appointment'
-    elsif Appointment.exists?(owner: owner, date: date)
+    elsif Rails.cache.exist?(Appointment.cache_key(owner: owner, date: date))
       'appointment'
     elsif owner.works_for?(week_day: date.wday, hour: date.hour)
       'active'
     else
       'not-active'
     end
+
+    # if caller.has_an_appointment?(owner: owner, date: date)
+    #   'self-appointment'
+    # elsif Appointment.exists?(owner: owner, date: date)
+    #   'appointment'
+    # elsif owner.works_for?(week_day: date.wday, hour: date.hour)
+    #   'active'
+    # else
+    #   'not-active'
+    # end
   end
 
   def appointment_name_to_show(appointment:)

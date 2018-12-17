@@ -12,7 +12,22 @@
     <% 0.upto(23).each do |hour| %>
       <tr>
         <td><%= format("%02d:00", hour) %></td>
-        <%= render partial: 'appointments/day', collection: days, locals: { owner: @owner, caller: current_user, hour: hour } %>
+        <%# OPCIÓ LENTA PERÒ MOLONA %>
+        <%#= render partial: 'appointments/day', collection: days, locals: { owner: @owner, caller: current_user, hour: hour } %>
+        
+        <%# OPCIÓ RÀPIDA %>
+        <% days.each do |day| %>
+          <td id='schedule_<%= day.wday %>_<%= hour %>' class="<%= appointments_schedule_class(owner: @owner, caller: current_user, date: DateTime.new(day.year, day.month, day.day, hour)) %>">
+            <% appointment = current_user.appointment_for(owner: @owner, date: DateTime.new(day.year, day.month, day.day, hour)) %>
+            <%= form_with model: [appointment.owner, appointment] do |f| %>
+              <%= f.hidden_field :owner_id %>
+              <%= f.hidden_field :caller_id %>
+              <%= f.hidden_field :date %>
+              <%= f.submit appointment_name_to_show(appointment: appointment).to_s unless appointment.new_record? && appointment.owner == current_user %>
+            <% end %>
+          </td>
+        <% end %>
+
       </tr>
     <% end %>
   </table>
